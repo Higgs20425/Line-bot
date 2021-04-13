@@ -40,6 +40,42 @@ def handle_message(event):
     msg = event.message.text
     r = '阿鬼你還是說中文吧！'
 
+    if '圖片海' in msg:
+        imagemap_message = ImagemapSendMessage(
+            base_url='https://example.com/base',
+            alt_text='this is an imagemap',
+            base_size=BaseSize(height=1040, width=1040),
+            video=Video(
+                original_content_url='https://example.com/video.mp4',
+                preview_image_url='https://example.com/video_preview.jpg',
+                area=ImagemapArea(
+                    x=0, y=0, width=1040, height=585
+                ),
+                external_link=ExternalLink(
+                    link_uri='https://example.com/see_more.html',
+                    label='See More',
+                ),
+            ),
+            actions=[
+                URIImagemapAction(
+                    link_uri='https://example.com/',
+                    area=ImagemapArea(
+                        x=0, y=0, width=520, height=1040
+                    )
+                ),
+                MessageImagemapAction(
+                    text='hello',
+                    area=ImagemapArea(
+                        x=520, y=0, width=520, height=1040
+                    )
+                )
+            ]
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        imagemap_message)
+
     if '給我貼圖' in msg:
         sticker_message = StickerSendMessage(
             package_id='1',
@@ -49,7 +85,7 @@ def handle_message(event):
         line_bot_api.reply_message(
         event.reply_token,
         sticker_message)
-        
+
 
     if msg == 'hi':
         r = 'hi~hi~'
