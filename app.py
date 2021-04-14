@@ -206,8 +206,8 @@ def handle_message(event):
 
     if msg == '梗圖':
         image_message = ImageSendMessage(
-            original_content_url='https://example.com/original.jpg',
-            preview_image_url='https://example.com/preview.jpg'
+            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+            preview_image_url='https://i.imgur.com/CFnfZmD.jpg'
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
