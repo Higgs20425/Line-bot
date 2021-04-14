@@ -65,14 +65,19 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, image_message)
 
     elif '梗圖' in msg:
-        num_meme = msg.split()
-        meme = pick_memes(int(num_meme[1]))
-        image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url=meme
-        )
+        try:
+            num_meme = int(msg.split()[1])
+            if isinstance(num_meme, int) == True:
+                meme = pick_memes(num_meme)
+                image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+                    preview_image_url=meme
+                )
 
-        line_bot_api.reply_message(event.reply_token, image_message)
+                line_bot_api.reply_message(event.reply_token, image_message)
+        
+        except ValueError:
+            pass
 
     if '酒吧 大安' in msg:
         carousel_template_message = TemplateSendMessage(
