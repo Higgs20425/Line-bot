@@ -24,6 +24,7 @@ def pick_photo():
     collect = ['https://i.imgur.com/CFnfZmD.jpg', 'https://i.imgur.com/tN7r7Xb.jpg', 'https://i.imgur.com/pPka4NU.jpg', 'https://i.imgur.com/MnQ6r96.jpg', 'https://i.imgur.com/PXUBM8r.jpg', 'https://i.imgur.com/c0shKWO.jpg', 'https://i.imgur.com/n6ysQ1q.jpg']
     return collect[num]
 
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
@@ -211,10 +212,10 @@ def handle_message(event):
         carousel_template_message)
 
     if msg == '梗圖':
-
+        rotate = pick_photo()
         image_message = ImageSendMessage(
             # original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url=pick_photo()
+            preview_image_url=rotate
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
