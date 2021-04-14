@@ -248,7 +248,7 @@ def handle_message(event):
         r = '有400萬的藍人'
     elif msg == '小馬雲':
         r = '阿里 阿里巴巴'
-     elif msg == '蒼哥':
+    elif msg == '蒼哥':
         r = '蒼哥在默默操盤'
     # elif msg == '':
     #     r = ''
