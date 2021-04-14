@@ -19,7 +19,7 @@ line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0
 handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
 
 
-def pick_photo():
+def pick_memes():
     num = random.randint(0,41)
     collect = ['https://i.imgur.com/CFnfZmD.jpg', 'https://i.imgur.com/tN7r7Xb.jpg', 'https://i.imgur.com/pPka4NU.jpg', 'https://i.imgur.com/MnQ6r96.jpg', 'https://i.imgur.com/PXUBM8r.jpg', 'https://i.imgur.com/c0shKWO.jpg',
      'https://i.imgur.com/n6ysQ1q.jpg', 'https://i.imgur.com/pPOULBM.jpg' ,'https://i.imgur.com/wodXcnU.jpg' ,'https://i.imgur.com/iUMJXub.jpg' ,'https://i.imgur.com/0eTMksx.jpg', 'https://i.imgur.com/unBS2BD.jpg',
@@ -218,7 +218,7 @@ def handle_message(event):
         carousel_template_message)
 
     if msg == '梗圖':
-        meme = pick_photo()
+        meme = pick_memes()
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
             preview_image_url=meme
