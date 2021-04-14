@@ -18,7 +18,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
 
-num_ramdom_meme = random.randint(0,41)
+num_random_meme = random.randint(0,41)
 
 def pick_memes(num):
     collecttion = ['https://i.imgur.com/CFnfZmD.jpg', 'https://i.imgur.com/tN7r7Xb.jpg', 'https://i.imgur.com/pPka4NU.jpg', 'https://i.imgur.com/MnQ6r96.jpg', 'https://i.imgur.com/PXUBM8r.jpg', 'https://i.imgur.com/c0shKWO.jpg',
@@ -56,7 +56,7 @@ def handle_message(event):
     r = '阿鬼你還是說中文吧!'
 
     if msg == '梗圖':
-        meme = pick_memes(num_ramdom_meme)
+        meme = pick_memes(num_random_meme)
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
             preview_image_url=meme
