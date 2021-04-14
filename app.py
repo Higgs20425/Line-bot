@@ -214,7 +214,7 @@ def handle_message(event):
     if msg == '梗圖':
         rotate = pick_photo()
         image_message = ImageSendMessage(
-            # original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
             preview_image_url='https://i.imgur.com/CFnfZmD.jpg'
         )
 
