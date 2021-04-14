@@ -210,7 +210,7 @@ def handle_message(event):
             preview_image_url='https://example.com/preview.jpg'
         )
 
-        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.reply_message(event.reply_token, image_message)
 
     if msg == '諭哥':
         r = '諭哥沒在上班啦!'
