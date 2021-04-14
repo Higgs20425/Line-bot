@@ -7,13 +7,17 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImagemapSendMessage, LocationSendMessage, BaseSize, Video, ImagemapArea, ExternalLink, URIImagemapAction, MessageImagemapAction, TemplateSendMessage, CarouselTemplate, CarouselColumn, PostbackAction, MessageAction, URIAction,
+    MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImagemapSendMessage, LocationSendMessage, BaseSize, Video, ImagemapArea, ExternalLink, URIImagemapAction, MessageImagemapAction, TemplateSendMessage, CarouselTemplate, CarouselColumn, PostbackAction, MessageAction, URIAction, ImageSendMessage
 )
 
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
+
+def message_filter(msg):
+
+
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -201,28 +205,6 @@ def handle_message(event):
         event.reply_token,
         carousel_template_message)
 
-    if '貼圖' in msg:
-        sticker_message = StickerSendMessage(
-            package_id='1',
-            sticker_id='1'
-        )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-
-    if '地點' in msg:
-        location_message = LocationSendMessage(
-            title='my location',
-            address='Tokyo',
-            latitude=35.65910807942215,
-            longitude=139.70372892916203
-        )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        location_message)
-
     if msg == '諭哥':
         r = '諭哥沒在上班啦!'
     elif msg == '小業':
@@ -231,18 +213,6 @@ def handle_message(event):
         r = '有房有老婆有小孩,人生勝利組'
     elif '胞弟' in msg:
         r = '又再說胞弟壞話?'
-        # if named_count >= 3:
-        #     r = '不要一早就動刀動槍'
-        #     named_count += 1
-        # elif named_count >= 5:
-        #     r = '再說下去低氣壓來囉'
-        #     named_count += 1
-        # elif named_count >= 7:
-        #     r = '好啦,胞弟先去找溫暖(小業不要攔)'
-        #     named_count = 0
-        # elif named_count:
-        #     r = '又再說胞弟壞話?'
-        #     named_count += 1
     elif msg == '意義':
         r = '有意義沒逸逸'
     elif msg == '逸逸':
@@ -277,6 +247,14 @@ def handle_message(event):
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
+
+    if msg == '梗圖':
+        message = ImageSendMessage(
+            original_content_url='https://example.com/original.jpg',
+            preview_image_url='https://example.com/preview.jpg'
+        )
+
+        line_bot_api.reply_message(event.reply_token, message)
 
 if __name__ == "__main__":
     app.run()
