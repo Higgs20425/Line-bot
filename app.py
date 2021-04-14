@@ -204,6 +204,14 @@ def handle_message(event):
         event.reply_token,
         carousel_template_message)
 
+    if msg == '梗圖':
+        image_message = ImageSendMessage(
+            original_content_url='https://example.com/original.jpg',
+            preview_image_url='https://example.com/preview.jpg'
+        )
+
+        line_bot_api.reply_message(event.reply_token, message)
+
     if msg == '諭哥':
         r = '諭哥沒在上班啦!'
     elif msg == '小業':
@@ -247,13 +255,7 @@ def handle_message(event):
         event.reply_token,
         TextSendMessage(text=r))
 
-    if msg == '梗圖':
-        message = ImageSendMessage(
-            original_content_url='https://example.com/original.jpg',
-            preview_image_url='https://example.com/preview.jpg'
-        )
 
-        line_bot_api.reply_message(event.reply_token, message)
 
 if __name__ == "__main__":
     app.run()
