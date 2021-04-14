@@ -10,13 +10,19 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImagemapSendMessage, LocationSendMessage, BaseSize, Video, ImagemapArea, ExternalLink, URIImagemapAction, MessageImagemapAction, TemplateSendMessage, CarouselTemplate, CarouselColumn, PostbackAction, MessageAction, URIAction, ImageSendMessage
 )
 
+import random
+
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
 
-#def message_filter(msg):
 
+def pick_photo():
+    num = random.randint(0,6)
+    collect = ['https://i.imgur.com/CFnfZmD.jpg', 'https://i.imgur.com/tN7r7Xb.jpg', 'https://i.imgur.com/pPka4NU.jpg', 'https://i.imgur.com/MnQ6r96.jpg', 'https://i.imgur.com/PXUBM8r.jpg', 'https://i.imgur.com/c0shKWO.jpg', 'https://i.imgur.com/n6ysQ1q.jpg']
+    return collect[num]
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -205,9 +211,10 @@ def handle_message(event):
         carousel_template_message)
 
     if msg == '梗圖':
+
         image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url='https://i.imgur.com/CFnfZmD.jpg'
+            # original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+            preview_image_url=pick_photo()
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
