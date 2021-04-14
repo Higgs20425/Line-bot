@@ -215,7 +215,7 @@ def handle_message(event):
         rotate = pick_photo()
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url='https://i.imgur.com/CFnfZmD.jpg'
+            preview_image_url=rotate
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
