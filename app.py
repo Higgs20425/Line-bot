@@ -55,41 +55,24 @@ def handle_message(event):
     msg = event.message.text
     r = '阿鬼你還是說中文吧!'
 
-    if '圖片海' in msg:
-        imagemap_message = ImagemapSendMessage(
-            base_url='https://example.com/base',
-            alt_text='this is an imagemap',
-            base_size=BaseSize(height=1040, width=1040),
-            video=Video(
-                original_content_url='https://example.com/video.mp4',
-                preview_image_url='https://example.com/video_preview.jpg',
-                area=ImagemapArea(
-                    x=0, y=0, width=1040, height=585
-                ),
-                external_link=ExternalLink(
-                    link_uri='https://example.com/see_more.html',
-                    label='See More',
-                ),
-            ),
-            actions=[
-                URIImagemapAction(
-                    link_uri='https://example.com/',
-                    area=ImagemapArea(
-                        x=0, y=0, width=520, height=1040
-                    )
-                ),
-                MessageImagemapAction(
-                    text='hello',
-                    area=ImagemapArea(
-                        x=520, y=0, width=520, height=1040
-                    )
-                )
-            ]
+    if msg == '梗圖':
+        meme = pick_memes(num_ramdom_meme)
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+            preview_image_url=meme
         )
 
-        line_bot_api.reply_message(
-        event.reply_token,
-        imagemap_message)
+        line_bot_api.reply_message(event.reply_token, image_message)
+
+    elif '梗圖' in msg:
+        num_meme = msg.split()
+        meme = pick_memes(int(num_meme[1]))
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+            preview_image_url=meme
+        )
+
+        line_bot_api.reply_message(event.reply_token, image_message)
 
     if '酒吧 大安' in msg:
         carousel_template_message = TemplateSendMessage(
@@ -217,49 +200,30 @@ def handle_message(event):
         event.reply_token,
         carousel_template_message)
 
-    if msg == '梗圖':
-        meme = pick_memes(num_ramdom_meme)
-        image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url=meme
-        )
-
-        line_bot_api.reply_message(event.reply_token, image_message)
-
-    if '梗圖' in msg:
-        num_meme = msg.split()
-        meme = pick_memes(num_meme[1])
-        image_message = ImageSendMessage(
-            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url=meme
-        )
-
-        line_bot_api.reply_message(event.reply_token, image_message)
-
-    if msg == '諭哥':
-        r = '諭哥沒在上班啦!'
-    elif msg == '小業':
-        r = 'RAV4準備開出來了!'
-    elif msg == '胞弟':
-        r = '有房有老婆有小孩,人生勝利組'
-    elif '胞弟' in msg:
-        r = '又再說胞弟壞話?'
-    elif msg == '意義':
-        r = '有意義沒逸逸'
-    elif msg == '逸逸':
-        r = '在釣魚啦'
-    elif msg == '呆寶':
-        r = '遊戲刪了'
-    elif msg == '偉航':
-        r = '辣個賺十萬的男人'
-    elif msg == '林老闆':
-        r = '林老闆帶大家飛'
-    elif msg == '開命':
-        r = '有400萬的藍人'
-    elif msg == '小馬雲':
-        r = '阿里 阿里巴巴'
-    elif msg == '蒼哥':
-        r = '蒼哥在默默操盤'
+    # if msg == '諭哥':
+    #     r = '諭哥沒在上班啦!'
+    # elif msg == '小業':
+    #     r = 'RAV4準備開出來了!'
+    # elif msg == '胞弟':
+    #     r = '有房有老婆有小孩,人生勝利組'
+    # elif '胞弟' in msg:
+    #     r = '又再說胞弟壞話?'
+    # elif msg == '意義':
+    #     r = '有意義沒逸逸'
+    # elif msg == '逸逸':
+    #     r = '在釣魚啦'
+    # elif msg == '呆寶':
+    #     r = '遊戲刪了'
+    # elif msg == '偉航':
+    #     r = '辣個賺十萬的男人'
+    # elif msg == '林老闆':
+    #     r = '林老闆帶大家飛'
+    # elif msg == '開命':
+    #     r = '有400萬的藍人'
+    # elif msg == '小馬雲':
+    #     r = '阿里 阿里巴巴'
+    # elif msg == '蒼哥':
+    #     r = '蒼哥在默默操盤'
     # elif msg == '':
     #     r = ''
     # elif msg == '':
@@ -275,9 +239,9 @@ def handle_message(event):
     # elif '諭哥' in msg:
     #     r = '又有諭哥的局了?'
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
+    # line_bot_api.reply_message(
+    #     event.reply_token,
+    #     TextSendMessage(text=r))
 
 
 
