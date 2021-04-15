@@ -53,7 +53,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    r = ''
+    r = ' '
     num_random_meme = random.randint(0,41)
 
     if msg == '梗圖':
