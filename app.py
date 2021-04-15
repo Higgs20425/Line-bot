@@ -26,15 +26,19 @@ def pick_up_memes(num):
     'https://i.imgur.com/cBj0Bfx.jpg', 'https://i.imgur.com/VaIoKYM.jpg', 'https://i.imgur.com/lbbIFKS.jpg', 'https://i.imgur.com/5Djp6H3.jpg', 'https://i.imgur.com/4kuf6pe.jpg', 'https://i.imgur.com/n9SS2nj.jpg',
     'https://i.imgur.com/YCk5Qus.jpg', 'https://i.imgur.com/sHjTwkz.jpg', 'https://i.imgur.com/X1QXx6I.jpg', 'https://i.imgur.com/1dwRxPX.jpg', 'https://i.imgur.com/2UcI2sG.jpg', 'https://i.imgur.com/kt84g6H.jpg',
     'https://i.imgur.com/rJ2eO3W.jpg', 'https://i.imgur.com/k4IotO1.jpg', 'https://i.imgur.com/42flWYE.jpg', 'https://i.imgur.com/pDDNhjK.jpg', 'https://i.imgur.com/bqDopSu.jpg', 'https://i.imgur.com/DjfVaXW.jpg']
-    return memes_library[num]
+    
+    meme_url = memes_library[num]
+    return meme_url
 
 
-def reply_message(msg):
+def retort(msg):
     bullshit_library = {'愈哥': '諭哥沒在上班啦!', '玉哥': '諭哥沒在上班啦!', '諭哥': '諭哥沒在上班啦!', '小業': 'RAV4準備開出來了!', '胞弟': '有房有老婆有小孩,人生勝利組', '意義': '有意義沒逸逸', 
     '逸逸': '在釣魚啦!', '呆寶': '電腦砸了 遊戲刪了', '偉航': '辣個賺十萬的男人', '胖安': '這很林老闆', '開命': '有400萬的藍人', '阿里': '阿里巴巴', '小馬雲': '阿里 阿里巴巴', '蒼哥': '蒼哥在默默操盤啦', 
     '倉哥': '蒼哥在默默操盤啦', '吉哥': '吉丸吉丸', '雞哥': '吉丸吉丸', '機哥': '吉丸吉丸', '基哥': '吉丸吉丸', '靠北': '嗯?', '告北': '嗯?', '不是阿': '嘿?', '不是啊': '嘿?', '會癢': '要驗喔', '會癢?': '要驗喔', 
     '真的來了': '當天再約?', '很快': '有小業快?', '很快餒': '有小業快?', '快喔': '諭哥準備交割?'}
-    return bullshit_library[msg]
+
+    responese = bullshit_library[msg]
+    return responese
 
 
 @app.route("/callback", methods=['POST'])
@@ -59,30 +63,31 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
-    r = ' '
-    num_random_meme = random.randint(0,41)
+    random_meme = random.randint(0,41)
 
     if msg == '梗圖':
         r = '請輸入 "梗圖啦" 或 "梗圖 數字"'
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=r))
+        return
 
     elif msg == '梗圖啦':
-        meme_url = pick_up_memes(num_random_meme)
+        meme_url = pick_up_memes(random_meme)
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
             preview_image_url=meme_url
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
+        return
 
     elif '梗圖' in msg:
         try:
-            num_meme = int(msg.split()[1])
-            if isinstance(num_meme, int) == True and num_meme > 0:
-                num_meme -= 1
-                meme_url = pick_up_memes(num_meme)
+            meme = int(msg.split()[1])
+            if isinstance(meme, int) == True and meme > 0:
+                meme -= 1
+                meme_url = pick_up_memes(meme)
                 image_message = ImageSendMessage(
                     original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
                     preview_image_url=meme_url
@@ -91,7 +96,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, image_message)
         
         except ValueError:
-            pass
+            return
 
     if '酒吧 大安' in msg:
         carousel_template_message = TemplateSendMessage(
@@ -165,6 +170,7 @@ def handle_message(event):
         line_bot_api.reply_message(
         event.reply_token,
         carousel_template_message)
+        return
 
     elif '酒吧 信義' in msg:
         carousel_template_message = TemplateSendMessage(
@@ -218,9 +224,13 @@ def handle_message(event):
         line_bot_api.reply_message(
         event.reply_token,
         carousel_template_message)
+        return
 
-    if msg:
-        r = reply_message(msg)
+    try:
+        if msg:
+            r = retort(msg)
+    except KeyError as e:
+        r = ' '
     # elif '' in msg:
     #     r = ''
 
