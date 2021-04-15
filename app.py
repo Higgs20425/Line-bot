@@ -57,6 +57,12 @@ def handle_message(event):
     num_random_meme = random.randint(0,41)
 
     if msg == '梗圖':
+        r = '請輸入 "梗圖啦" 或 "梗圖 數字"'
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=r))
+        
+    elif msg == '梗圖啦':
         meme = pick_memes(num_random_meme)
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
