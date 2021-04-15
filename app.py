@@ -69,6 +69,7 @@ def handle_message(event):
         try:
             num_meme = int(msg.split()[1])
             if isinstance(num_meme, int) == True:
+                num_meme -= 1
                 meme = pick_memes(num_meme)
                 image_message = ImageSendMessage(
                     original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
