@@ -37,7 +37,10 @@ def retort(msg):
     '倉哥': '蒼哥在默默操盤啦', '吉哥': '吉丸吉丸', '雞哥': '吉丸吉丸', '機哥': '吉丸吉丸', '基哥': '吉丸吉丸', '靠北': '嗯?', '告北': '嗯?', '不是阿': '嘿?', '不是啊': '嘿?', '會癢': '要驗喔', '會癢?': '要驗喔', 
     '真的來了': '當天再約?', '很快': '有小業快?', '很快餒': '有小業快?', '快喔': '諭哥準備交割?', '諭哥哩': '在台東啦'}
 
-    responese = bullshit_library[msg]
+    keyword = bullshit_library.keys()
+    for word in keyword:
+        if word in msg:
+            responese = bullshit_library[word]        
     return responese
 
 
@@ -230,7 +233,7 @@ def handle_message(event):
         if msg:
             r = retort(msg)
     except KeyError as e:
-        r = ' '
+        r = ''
     # elif '' in msg:
     #     r = ''
 
