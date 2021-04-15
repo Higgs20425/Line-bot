@@ -68,7 +68,7 @@ def handle_message(event):
     elif '梗圖' in msg:
         try:
             num_meme = int(msg.split()[1])
-            if isinstance(num_meme, int) == True:
+            if isinstance(num_meme, int) == True and num_meme > 0:
                 num_meme -= 1
                 meme = pick_memes(num_meme)
                 image_message = ImageSendMessage(
