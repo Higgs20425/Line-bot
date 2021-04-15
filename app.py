@@ -61,7 +61,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=r))
-        
+
     elif msg == '梗圖啦':
         meme = pick_memes(num_random_meme)
         image_message = ImageSendMessage(
@@ -237,17 +237,29 @@ def handle_message(event):
         r = '阿里 阿里巴巴'
     elif msg == '蒼哥':
         r = '蒼哥在默默操盤'
-    # elif msg == '':
+    elif msg == '...':
+        r = '...'
+    elif msg == '靠北':
+        r = '恩?'
+    elif msg == '不是阿' or '不是啊' or '不是':
+        r = '嘿?'
+    elif '癢' in msg:
+        r = '要驗喔'
+    elif '高雄' in msg:
+        r = '真的來了!'                        
+    elif '快' in msg:
+        r = '有小業快?'
+    # elif '' in msg:
     #     r = ''
-    # elif msg == '':
+    # elif '' in msg:
     #     r = ''
-    # elif msg == '':
+    # elif '' in msg:
     #     r = ''
-    # elif msg == '':
+    # elif '' in msg:
     #     r = ''
-    # elif msg == '':
-    #     r = ''                        
-    # elif msg == '':
+    # elif '' in msg:
+    #     r = ''
+    # elif '' in msg:
     #     r = ''
     # elif '諭哥' in msg:
     #     r = '又有諭哥的局了?'
