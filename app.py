@@ -21,7 +21,6 @@ handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
 
 
 def pick_memes(num):
-    # num = random.randint(0,41)
     collection = ['https://i.imgur.com/CFnfZmD.jpg', 'https://i.imgur.com/tN7r7Xb.jpg', 'https://i.imgur.com/pPka4NU.jpg', 'https://i.imgur.com/MnQ6r96.jpg', 'https://i.imgur.com/PXUBM8r.jpg', 'https://i.imgur.com/c0shKWO.jpg',
     'https://i.imgur.com/n6ysQ1q.jpg', 'https://i.imgur.com/pPOULBM.jpg' ,'https://i.imgur.com/wodXcnU.jpg' ,'https://i.imgur.com/iUMJXub.jpg' ,'https://i.imgur.com/0eTMksx.jpg', 'https://i.imgur.com/unBS2BD.jpg',
     'https://i.imgur.com/67KujPY.jpg', 'https://i.imgur.com/wlgb4E6.jpg', 'https://i.imgur.com/CR1F95O.jpg', 'https://i.imgur.com/HDi18W8.jpg', 'https://i.imgur.com/gbvg8uW.jpg', 'https://i.imgur.com/HndKvCG.jpg',
@@ -66,20 +65,20 @@ def handle_message(event):
 
         line_bot_api.reply_message(event.reply_token, image_message)
 
-    # elif '梗圖' in msg:
-    #     try:
-    #         num_meme = int(msg.split()[1])
-    #         if isinstance(num_meme, int) == True:
-    #             meme = pick_memes(num_meme)
-    #             image_message = ImageSendMessage(
-    #                 original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-    #                 preview_image_url=meme
-    #             )
+    elif '梗圖' in msg:
+        try:
+            num_meme = int(msg.split()[1])
+            if isinstance(num_meme, int) == True:
+                meme = pick_memes(num_meme)
+                image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+                    preview_image_url=meme
+                )
 
-    #             line_bot_api.reply_message(event.reply_token, image_message)
+                line_bot_api.reply_message(event.reply_token, image_message)
         
-    #     except ValueError:
-    #         pass
+        except ValueError:
+            pass
 
     if '酒吧 大安' in msg:
         carousel_template_message = TemplateSendMessage(
