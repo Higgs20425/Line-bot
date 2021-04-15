@@ -213,30 +213,30 @@ def handle_message(event):
         event.reply_token,
         carousel_template_message)
 
-    # if msg == '諭哥':
-    #     r = '諭哥沒在上班啦!'
-    # elif msg == '小業':
-    #     r = 'RAV4準備開出來了!'
-    # elif msg == '胞弟':
-    #     r = '有房有老婆有小孩,人生勝利組'
-    # elif '胞弟' in msg:
-    #     r = '又再說胞弟壞話?'
-    # elif msg == '意義':
-    #     r = '有意義沒逸逸'
-    # elif msg == '逸逸':
-    #     r = '在釣魚啦'
-    # elif msg == '呆寶':
-    #     r = '遊戲刪了'
-    # elif msg == '偉航':
-    #     r = '辣個賺十萬的男人'
-    # elif msg == '林老闆':
-    #     r = '林老闆帶大家飛'
-    # elif msg == '開命':
-    #     r = '有400萬的藍人'
-    # elif msg == '小馬雲':
-    #     r = '阿里 阿里巴巴'
-    # elif msg == '蒼哥':
-    #     r = '蒼哥在默默操盤'
+    if msg == '諭哥':
+        r = '諭哥沒在上班啦!'
+    elif msg == '小業':
+        r = 'RAV4準備開出來了!'
+    elif msg == '胞弟':
+        r = '有房有老婆有小孩,人生勝利組'
+    elif '胞弟' in msg:
+        r = '又再說胞弟壞話?'
+    elif msg == '意義':
+        r = '有意義沒逸逸'
+    elif msg == '逸逸':
+        r = '在釣魚啦'
+    elif msg == '呆寶':
+        r = '遊戲刪了'
+    elif msg == '偉航':
+        r = '辣個賺十萬的男人'
+    elif msg == '林老闆':
+        r = '林老闆帶大家飛'
+    elif msg == '開命':
+        r = '有400萬的藍人'
+    elif msg == '小馬雲':
+        r = '阿里 阿里巴巴'
+    elif msg == '蒼哥':
+        r = '蒼哥在默默操盤'
     # elif msg == '':
     #     r = ''
     # elif msg == '':
@@ -252,9 +252,9 @@ def handle_message(event):
     # elif '諭哥' in msg:
     #     r = '又有諭哥的局了?'
 
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text=r))
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
 
 
 
