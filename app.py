@@ -230,7 +230,7 @@ def handle_message(event):
         carousel_template_message)
         return
 
-    elif msg == '景點 民雄':
+    elif msg == '景點 嘉義':
         carousel_template_message = TemplateSendMessage(
             alt_text='@小哈',
             template=CarouselTemplate(
@@ -258,7 +258,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url='https://reurl.cc/qmbm8q',
                         title='大埔情人公園',
-                        text='位在嘉義的情人公園 佔地寬敞，景色幽美，旁邊就是曾文水庫 廣場以紅色花園為主題，有許多玫瑰花藝術裝置 創意佈景好吸睛，有巨型玫瑰花束、香水瓶 玫瑰粉紅屋、愛心拱門和夢幻的玫瑰花鐘 每個造景都好拍',
+                        text='位在嘉義的情人公園 佔地寬敞，景色幽美，旁邊就是曾文水庫 廣場以紅色花園為主題',
                         actions=[
                             # PostbackAction(
                             #     label='postback2',
@@ -318,7 +318,7 @@ def handle_message(event):
                     CarouselColumn(
                         thumbnail_image_url='https://reurl.cc/nnbnqv',
                         title='太平雲梯 遊客服務中心(附設餐廳、茶體驗、茶料理)',
-                        text='太平雲梯長度281公尺、海拔約1000公尺，為全台最長、海拔最高之景觀吊橋。吊橋從梅山太平村望風台橫跨三原彩虹瀑布通往龜山，讓旅客能俯瞰嘉義風光還能欣賞雲海風景，可將知名的梅山36彎美景盡收眼底，甚至能遠眺嘉南平原。',
+                        text='太平雲梯長度281公尺、海拔約1000公尺，為全台最長、海拔最高之景觀吊橋。',
                         actions=[
                             # PostbackAction(
                             #     label='postback2',
