@@ -371,7 +371,7 @@ def handle_message(event):
         sticker_message)
         return
 
-     elif '爬山' in msg:
+    elif '爬山' in msg:
         sticker_message = StickerSendMessage(
             package_id='789',
             sticker_id='10871'
