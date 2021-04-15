@@ -233,7 +233,7 @@ def handle_message(event):
         r = '林老闆帶大家飛'
     elif msg == '開命':
         r = '有400萬的藍人'
-    elif msg == '小馬雲':
+    elif '小馬雲' in msg:
         r = '阿里 阿里巴巴'
     elif msg == '蒼哥':
         r = '蒼哥在默默操盤'
@@ -241,7 +241,7 @@ def handle_message(event):
         r = '...'
     elif msg == '靠北':
         r = '恩?'
-    elif msg == '不是阿' or '不是啊' or '不是':
+    elif '不是阿' or '不是啊' or '不是' in msg:
         r = '嘿?'
     elif '癢' in msg:
         r = '要驗喔'
