@@ -256,7 +256,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://reurl.cc/qmbm8q',
+                        thumbnail_image_url='https://pic.pimg.tw/emily561025/1540898548-3106265433.jpg',
                         title='大埔情人公園',
                         text='位在嘉義的情人公園 佔地寬敞，景色幽美，旁邊就是曾文水庫 廣場以紅色花園為主題',
                         actions=[
@@ -316,7 +316,7 @@ def handle_message(event):
                         ]
                     ),
                     CarouselColumn(
-                        thumbnail_image_url='https://reurl.cc/nnbnqv',
+                        thumbnail_image_url='https://www.welcometw.com/wp-content/uploads/2020/09/S__26083409-850x638.jpg',
                         title='太平雲梯 遊客服務中心(附設餐廳、茶體驗、茶料理)',
                         text='太平雲梯長度281公尺、海拔約1000公尺，為全台最長、海拔最高之景觀吊橋。',
                         actions=[
