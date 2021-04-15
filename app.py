@@ -18,7 +18,7 @@ app = Flask(__name__)
 line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
 
-num_random_meme = random.randint(0,41)
+
 
 def pick_memes(num):
     # num = random.randint(0,41)
@@ -55,6 +55,7 @@ def callback():
 def handle_message(event):
     msg = event.message.text
     r = '阿鬼你還是說中文吧!'
+    num_random_meme = random.randint(0,41)
 
     if msg == '梗圖':
         meme = pick_memes(num_random_meme)
