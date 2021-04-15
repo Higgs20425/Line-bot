@@ -241,7 +241,7 @@ def handle_message(event):
         r = '...'
     elif msg == '靠北':
         r = '恩?'
-    elif '不是阿' and '不是啊' and '不是' and msg:
+    elif '不是阿' in msg or '不是啊' in msg or '不是' in msg:
         r = '嘿?'
     elif '癢' in msg:
         r = '要驗喔'
