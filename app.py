@@ -36,7 +36,7 @@ def retort(msg):
     '逸逸': '在釣魚啦!', '呆寶': '電腦砸了 遊戲刪了', '偉航': '辣個賺十萬的男人', '胖安': '這很林老闆', '開命': '有400萬的藍人', '阿里': '阿里巴巴', '小馬雲': '阿里 阿里巴巴', '蒼哥': '蒼哥在默默操盤啦', 
     '倉哥': '蒼哥在默默操盤啦', '吉哥': '吉丸吉丸', '雞哥': '吉丸吉丸', '機哥': '吉丸吉丸', '基哥': '吉丸吉丸', '靠北': '嗯?', '告北': '嗯?', '不是阿': '嘿?', '不是啊': '嘿?', '會癢': '要驗喔', '會癢?': '要驗喔', 
     '真的來了': '當天再約?', '很快': '有小業快?', '很快餒': '有小業快?', '快喔': '諭哥準備交割?', '諭哥哩': '在台東啦', '乾': '嘿?', '不對喔': '出事了阿北', '不好說': '不想說都不要說', '不好說啦': '不想說都不要說', 
-    '幹': '又有了?', '...': '...', '沒聲音': '人走茶涼啦'}
+    '幹': '又有了?', '...': '...', '沒聲音': '人走茶涼啦', '問題': '你問題最多'}
     # '': '', 
     keyword = bullshit_library.keys()
     for word in keyword:
@@ -218,6 +218,120 @@ def handle_message(event):
                             URIAction(
                                 label='Google Maps',
                                 uri='https://reurl.cc/Xeb2E0'
+                            )
+                        ]
+                    )
+                ]
+            )
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        carousel_template_message)
+        return
+
+    elif msg == '景點 民雄':
+        carousel_template_message = TemplateSendMessage(
+            alt_text='@小哈',
+            template=CarouselTemplate(
+                columns=[
+                    CarouselColumn(
+                        thumbnail_image_url='https://pic.pimg.tw/as660707/1507707816-3005797788_l.jpg',
+                        title='愛木村休閒觀光工廠',
+                        text='館內還有許多特色場景，讓旅人取景紀念親子來訪，也能體驗手作DIY唷',
+                        actions=[
+                            # PostbackAction(
+                            #     label='postback1',
+                            #     display_text='postback text1',
+                            #     data='action=buy&itemid=1'
+                            # ),
+                            # MessageAction(
+                            #     label='message1',
+                            #     text='message text1'
+                            # ),
+                            URIAction(
+                                label='發車囉',
+                                uri='https://reurl.cc/dVb56z'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://reurl.cc/qmbm8q',
+                        title='大埔情人公園',
+                        text='位在嘉義的情人公園 佔地寬敞，景色幽美，旁邊就是曾文水庫 廣場以紅色花園為主題，有許多玫瑰花藝術裝置 創意佈景好吸睛，有巨型玫瑰花束、香水瓶 玫瑰粉紅屋、愛心拱門和夢幻的玫瑰花鐘 每個造景都好拍',
+                        actions=[
+                            # PostbackAction(
+                            #     label='postback2',
+                            #     display_text='postback text2',
+                            #     data='action=buy&itemid=2'
+                            # ),
+                            # MessageAction(
+                            #     label='message2',
+                            #     text='message text2'
+                            # ),
+                            URIAction(
+                                label='立馬導航',
+                                uri='https://reurl.cc/KxzxKn'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://decing.tw/wp-content/uploads/20200914152739_61.jpg',
+                        title='嘉義市立美術館',
+                        text='嘉義市立美術館成為歷史與當代場域的交匯點， 也是「嘉義文化新絲路」上的一道古典且新穎的風景。',
+                        actions=[
+                            # PostbackAction(
+                            #     label='postback2',
+                            #     display_text='postback text2',
+                            #     data='action=buy&itemid=2'
+                            # ),
+                            # MessageAction(
+                            #     label='message2',
+                            #     text='message text2'
+                            # ),
+                            URIAction(
+                                label='飆風馬',
+                                uri='https://reurl.cc/l0b0oY'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://img.fullfenblog.tw/20200310131442_80.jpg',
+                        title='龍王金殿',
+                        text='龍王金殿位在群山峻嶺的森林之中 金碧輝煌的唐宋建築，好似京都金閣寺 四周環山，還有一整片壯麗的茶田風光',
+                        actions=[
+                            # PostbackAction(
+                            #     label='postback2',
+                            #     display_text='postback text2',
+                            #     data='action=buy&itemid=2'
+                            # ),
+                            # MessageAction(
+                            #     label='message2',
+                            #     text='message text2'
+                            # ),
+                            URIAction(
+                                label='忍不住前往',
+                                uri='https://reurl.cc/GdqdXA'
+                            )
+                        ]
+                    ),
+                    CarouselColumn(
+                        thumbnail_image_url='https://reurl.cc/nnbnqv',
+                        title='太平雲梯 遊客服務中心(附設餐廳、茶體驗、茶料理)',
+                        text='太平雲梯長度281公尺、海拔約1000公尺，為全台最長、海拔最高之景觀吊橋。吊橋從梅山太平村望風台橫跨三原彩虹瀑布通往龜山，讓旅客能俯瞰嘉義風光還能欣賞雲海風景，可將知名的梅山36彎美景盡收眼底，甚至能遠眺嘉南平原。',
+                        actions=[
+                            # PostbackAction(
+                            #     label='postback2',
+                            #     display_text='postback text2',
+                            #     data='action=buy&itemid=2'
+                            # ),
+                            # MessageAction(
+                            #     label='message2',
+                            #     text='message text2'
+                            # ),
+                            URIAction(
+                                label='行程跑起來',
+                                uri='https://reurl.cc/pmbmrd'
                             )
                         ]
                     )
