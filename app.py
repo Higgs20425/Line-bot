@@ -41,7 +41,7 @@ def retort(msg):
     for word in keyword:
         if word in msg:
             responese = bullshit_library[word]        
-    return responese
+            return responese
 
 
 @app.route("/callback", methods=['POST'])
