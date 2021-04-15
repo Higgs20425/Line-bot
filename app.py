@@ -102,7 +102,7 @@ def handle_message(event):
         except ValueError:
             return
 
-    if '酒吧 大安' in msg:
+    if msg == '酒吧 大安' in msg:
         carousel_template_message = TemplateSendMessage(
             alt_text='喝酒囉',
             template=CarouselTemplate(
@@ -176,7 +176,7 @@ def handle_message(event):
         carousel_template_message)
         return
 
-    elif '酒吧 信義' in msg:
+    elif msg == '酒吧 信義':
         carousel_template_message = TemplateSendMessage(
             alt_text='喝酒囉',
             template=CarouselTemplate(
@@ -343,6 +343,66 @@ def handle_message(event):
         event.reply_token,
         carousel_template_message)
         return
+
+    if '在一句' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='789',
+            sticker_id='10885'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+    elif '再一句' in msg:
+        r = '在啦'
+        sticker_message = StickerSendMessage(
+            package_id='446',
+            sticker_id='2009'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+     elif '爬山' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='789',
+            sticker_id='10871'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+    elif '凍未條' in msg or '憋不住啦' in msg or '憋不住' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='446',
+            sticker_id='2026'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+    # elif '' in msg:
+    #     sticker_message = StickerSendMessage(
+    #         package_id='',
+    #         sticker_id=''
+    #     )
+
+    #     line_bot_api.reply_message(
+    #     event.reply_token,
+    #     sticker_message)
+    #     return
 
     try:
         if msg:
