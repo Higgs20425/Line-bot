@@ -47,11 +47,11 @@ def retort(msg):
                 values_num -= 1
                 reply_msg = random.randint(0,values_num)
                 responese = bullshit_library[word][reply_msg]
-                return responese
+                # return responese
             else:
                 responese = bullshit_library[word]
-                return responese
-
+                # return responese
+    return responese
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
