@@ -42,12 +42,15 @@ def retort(msg):
     keyword = bullshit_library.keys()
     for word in keyword:
         if word in msg:
-            end = len(bullshit_library[word])
-            end -= 1
-            reply_msg = random.randint(0,end)
-            responese = bullshit_library[word][reply_msg]
-            return responese
-
+            values_num = len(bullshit_library[word])
+            if values_num > 1:
+                values_num -= 1
+                reply_msg = random.randint(0,values_num)
+                responese = bullshit_library[word][reply_msg]
+                return responese
+            else:
+                responese = bullshit_library[word]
+                return responese
 
 @app.route("/callback", methods=['POST'])
 def callback():
