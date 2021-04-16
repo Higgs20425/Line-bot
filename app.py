@@ -12,7 +12,6 @@ from linebot.models import (
 
 import random
 
-
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
@@ -31,27 +30,48 @@ def pick_up_memes(num):
     return meme_url
 
 
-def retort(msg):
-    bullshit_library = {'愈哥': '諭哥沒在上班啦!', '玉哥': '諭哥沒在上班啦!', '諭哥': '諭哥沒在上班啦!', '小業': 'RAV4準備開出來了!', '胞弟': ['雙飛雙飛', '要驗喔', '有房有老婆!有小孩?', '又在說胞弟壞話?'], '意義': '有意義沒逸逸', 
-    '逸逸': '在釣魚啦!', '呆寶': '電腦砸了 遊戲刪了', '偉航': '辣個賺十萬的男人', '胖安': '這很林老闆', '開命': '有400萬的藍人', '阿里': '阿里巴巴', '小馬雲': '阿里 阿里巴巴', '蒼哥': '蒼哥在默默操盤啦', 
-    '倉哥': '蒼哥在默默操盤啦', '吉哥': '吉丸吉丸', '雞哥': '吉丸吉丸', '機哥': '吉丸吉丸', '基哥': '吉丸吉丸', '靠北': '嗯?', '告北': '嗯?', '不是阿': '嘿?', '不是啊': '嘿?', '會癢': '要驗喔', '會癢?': '要驗喔', 
-    '真的來了': '當天再約?', '很快': '有小業快?', '很快餒': '有小業快?', '快喔': '諭哥準備交割?', '諭哥哩': '在台東啦', '乾': '嘿?', '不對喔': '出事了阿北', '不好說': '不想說都不要說', '不好說啦': '不想說都不要說', 
-    '幹': '又有了?', '...': '...', '沒聲音': '人走茶涼啦', '問題': '你問題最多', '媽媽桑': '要來我家看貓嗎?'}
+def responese(msg):
+    exact_keys = {'諭哥': ['諭哥沒在上班啦!', '還在台東啦...', '省500', '什麼時候北上', '小孩長的像你'], '小業': ['RAV4準備開出來了!', '準備做壞事? @13姨', '拒絕熊貓', '很奧豆?'], '逸逸': '在釣魚啦!', 
+    '呆寶': '電腦砸了 遊戲刪了', '偉航': '辣個賺十萬的男人', '胖安': '這很林老闆', '開命': '有400萬的藍人', '阿里': '阿里巴巴', '小馬雲': '阿里 阿里巴巴', '蒼哥': '蒼哥在默默操盤啦', '倉哥': '蒼哥在默默操盤啦', 
+    '吉哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '雞哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '機哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '基哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '靠北': ['嗯?', '嘿?'],
+     '告北': ['嗯?', '嘿?'], '不是阿': ['嗯?', '嘿?'], '真的來了': '當天再約?', '很快': '有小業快?', '很快餒': '有小業快?', '快喔': '諭哥準備交割?', '諭哥哩': '在台東啦', '乾': '嘿?', '不對喔': '出事了阿北', '不好說': '不想說都不要說', '不好說啦': '不想說都不要說', 
+    '幹': '又有了?', '...': '...', '問題': '你問題最多', '媽媽桑': '要來我家看貓嗎?'}
     # '': '', 
 
-    keyword = bullshit_library.keys()
-    for word in keyword:
-        if word in msg:
-            values_num = len(bullshit_library[word])
-            values_type = type(bullshit_library[word])
-            if values_type == list: 
-                values_num -= 1
-                reply_msg = random.randint(0,values_num)
-                responese = bullshit_library[word][reply_msg]
-                return responese
+    included_keys = {'胞弟': ['雙飛雙飛!', '要驗喔', '有房有老婆 有小孩?', '又在說胞弟壞話?', '壓進去喔', '我就是要雷你', ''],'老闆': ['石頭開大囉', '把你抱起來X', 'Hulk Smash!!!', '就是這麼簡單'], 
+    '撈半': ['石頭開大囉', '把你抱起來X', 'Hulk Smash!!!', '就是這麼簡單'], '撈伴': ['石頭開大囉', '把你抱起來X', 'Hulk Smash!!!', '就是這麼簡單'], '意義': '有意義沒逸逸', '沒聲音': '人走茶涼啦', 
+    '會癢': '要驗喔', '會癢?': '要驗喔'
+
+
+    }
+
+    try:
+        if msg in exact_keys:
+            len_values = len(exact_keys[msg])
+            type_values = type(exact_keys[msg])
+            if type_values == list: 
+                len_values -= 1
+                reply = random.randint(0,len_values)
+                rsp = exact_keys[msg][reply]
+                return rsp
             else:
-                responese = bullshit_library[word]
-                return responese
+                rsp = exact_keys[msg]
+                return rsp
+        else:
+            for key in included_keys.keys():
+                len_values = len(included_keys[key])
+                type_values = type(included_keys[key])
+                if key in msg and type_values == list:
+                    len_values -= 1
+                    reply = random.randint(0,len_values)
+                    rsp = exact_keys[key][reply]
+                    return rsp
+                else:
+                    rsp = exact_keys[key]
+                    return rsp
+    except KeyError as e:
+        rsp = ''                                  
+        return rsp
     
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -75,6 +95,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     msg = event.message.text
+    r = responese(msg)
     random_meme = random.randint(0,41)
 
     if msg == '梗圖':
@@ -398,29 +419,11 @@ def handle_message(event):
         return
 
     # elif '' in msg:
-    #     sticker_message = StickerSendMessage(
-    #         package_id='',
-    #         sticker_id=''
-    #     )
-
-    #     line_bot_api.reply_message(
-    #     event.reply_token,
-    #     sticker_message)
-    #     return
-
-    try:
-        if msg:
-            r = retort(msg)
-    except KeyError as e:
-        r = ''
-    # elif '' in msg:
     #     r = ''
 
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=r))
-
-
 
 if __name__ == "__main__":
     app.run()
