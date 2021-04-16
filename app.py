@@ -39,12 +39,11 @@ def retort(msg):
     '幹': '又有了?', '...': '...', '沒聲音': '人走茶涼啦', '問題': '你問題最多'}
     # '': '', 
 
-
     keyword = bullshit_library.keys()
     for word in keyword:
         if word in msg:
             end = len(bullshit_library[word])
-            reply_msg = randint(0,end)
+            reply_msg = random.randint(0,end)
             responese = bullshit_library[word][reply_msg]
             return responese
 
