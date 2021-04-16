@@ -43,6 +43,7 @@ def retort(msg):
     for word in keyword:
         if word in msg:
             end = len(bullshit_library[word])
+            end -= 1
             reply_msg = random.randint(0,end)
             responese = bullshit_library[word][reply_msg]
             return responese
