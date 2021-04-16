@@ -42,7 +42,6 @@ def responese(msg):
     '撈半': ['石頭開大囉', '把你抱起來X', 'Hulk Smash!!!', '就是這麼簡單'], '撈伴': ['石頭開大囉', '把你抱起來X', 'Hulk Smash!!!', '就是這麼簡單'], '意義': '有意義沒逸逸', '沒聲音': '人走茶涼啦', 
     '會癢': '要驗喔', '會癢?': '要驗喔'
 
-
     }
 
     try:
@@ -64,10 +63,10 @@ def responese(msg):
                 if key in msg and type_values == list:
                     len_values -= 1
                     reply = random.randint(0,len_values)
-                    rsp = exact_keys[key][reply]
+                    rsp = included_keys[key][reply]
                     return rsp
                 else:
-                    rsp = exact_keys[key]
+                    rsp = included_keys[key]
                     return rsp
     except KeyError as e:
         rsp = ''                                  
