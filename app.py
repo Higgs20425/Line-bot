@@ -32,16 +32,20 @@ def pick_up_memes(num):
 
 
 def retort(msg):
-    bullshit_library = {'愈哥': '諭哥沒在上班啦!', '玉哥': '諭哥沒在上班啦!', '諭哥': '諭哥沒在上班啦!', '小業': 'RAV4準備開出來了!', '胞弟': '怎樣 又想講胞弟壞話?', '意義': '有意義沒逸逸', 
+    bullshit_library = {'愈哥': '諭哥沒在上班啦!', '玉哥': '諭哥沒在上班啦!', '諭哥': '諭哥沒在上班啦!', '小業': 'RAV4準備開出來了!', '胞弟': ['雙飛雙飛', '要驗喔', '有房有老婆!有小孩?', '又在說胞弟壞話?'], '意義': '有意義沒逸逸', 
     '逸逸': '在釣魚啦!', '呆寶': '電腦砸了 遊戲刪了', '偉航': '辣個賺十萬的男人', '胖安': '這很林老闆', '開命': '有400萬的藍人', '阿里': '阿里巴巴', '小馬雲': '阿里 阿里巴巴', '蒼哥': '蒼哥在默默操盤啦', 
     '倉哥': '蒼哥在默默操盤啦', '吉哥': '吉丸吉丸', '雞哥': '吉丸吉丸', '機哥': '吉丸吉丸', '基哥': '吉丸吉丸', '靠北': '嗯?', '告北': '嗯?', '不是阿': '嘿?', '不是啊': '嘿?', '會癢': '要驗喔', '會癢?': '要驗喔', 
     '真的來了': '當天再約?', '很快': '有小業快?', '很快餒': '有小業快?', '快喔': '諭哥準備交割?', '諭哥哩': '在台東啦', '乾': '嘿?', '不對喔': '出事了阿北', '不好說': '不想說都不要說', '不好說啦': '不想說都不要說', 
     '幹': '又有了?', '...': '...', '沒聲音': '人走茶涼啦', '問題': '你問題最多'}
     # '': '', 
+
+
     keyword = bullshit_library.keys()
     for word in keyword:
         if word in msg:
-            responese = bullshit_library[word]        
+            end = len(bullshit_library[word])
+            reply_msg = randint(0,end)
+            responese = bullshit_library[word][reply_msg]
             return responese
 
 
@@ -361,10 +365,6 @@ def handle_message(event):
             package_id='446',
             sticker_id='2009'
         )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
 
         line_bot_api.reply_message(
         event.reply_token,
