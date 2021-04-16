@@ -43,15 +43,16 @@ def retort(msg):
     for word in keyword:
         if word in msg:
             values_num = len(bullshit_library[word])
-            if values_num > 1:
+            values_type = type(bullshit_library[word])
+            if values_type == list: 
                 values_num -= 1
                 reply_msg = random.randint(0,values_num)
                 responese = bullshit_library[word][reply_msg]
-                # return responese
+                return responese
             else:
                 responese = bullshit_library[word]
-                # return responese
-    return responese
+                return responese
+    
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
