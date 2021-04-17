@@ -40,7 +40,7 @@ def pick_up_memes():
         for id_ in clt:
             meme_ids.append(id_)
 
-    ran_ids = random.ranint(0, len(meme_ids))
+    ran_ids = random.randint(0, len(meme_ids))
     meme_id = meme_ids[ran_ids]
     return meme_id
 
@@ -145,14 +145,7 @@ def handle_message(event):
     msg = event.message.text
     r = responese(msg)
 
-    if msg == '梗圖':
-        r = '請輸入 "梗圖啦" 或 "梗圖 數字"'
-        line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=r))
-        return
-
-    elif msg == '梗圖啦':
+    if '梗圖' in msg:
         meme_id = pick_up_memes()
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
