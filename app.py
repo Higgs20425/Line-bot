@@ -156,7 +156,7 @@ def handle_message(event):
         meme_id = pick_up_memes()
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url='https://imgur.com/' + meme_id + '.jpg'
+            preview_image_url='https://i.imgur.com/' + meme_id + '.jpg'
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
