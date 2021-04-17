@@ -1,5 +1,4 @@
 from flask import Flask, request, abort
-
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -9,25 +8,42 @@ from linebot.exceptions import (
 from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage, StickerSendMessage, ImagemapSendMessage, LocationSendMessage, BaseSize, Video, ImagemapArea, ExternalLink, URIImagemapAction, MessageImagemapAction, TemplateSendMessage, CarouselTemplate, CarouselColumn, PostbackAction, MessageAction, URIAction, ImageSendMessage
 )
-
 import random
+import webbrowser
+from imgur_python import Imgur
 
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
 
-def pick_up_memes(num):
-    memes_library = ['https://i.imgur.com/CFnfZmD.jpg', 'https://i.imgur.com/tN7r7Xb.jpg', 'https://i.imgur.com/pPka4NU.jpg', 'https://i.imgur.com/MnQ6r96.jpg', 'https://i.imgur.com/PXUBM8r.jpg', 'https://i.imgur.com/c0shKWO.jpg',
-    'https://i.imgur.com/n6ysQ1q.jpg', 'https://i.imgur.com/pPOULBM.jpg' ,'https://i.imgur.com/wodXcnU.jpg' ,'https://i.imgur.com/iUMJXub.jpg' ,'https://i.imgur.com/0eTMksx.jpg', 'https://i.imgur.com/unBS2BD.jpg',
-    'https://i.imgur.com/67KujPY.jpg', 'https://i.imgur.com/wlgb4E6.jpg', 'https://i.imgur.com/CR1F95O.jpg', 'https://i.imgur.com/HDi18W8.jpg', 'https://i.imgur.com/gbvg8uW.jpg', 'https://i.imgur.com/HndKvCG.jpg',
-    'https://i.imgur.com/MPnqMVI.jpg', 'https://i.imgur.com/irg2G6L.jpg', 'https://i.imgur.com/x8hHbD2.jpg', 'https://i.imgur.com/I5AW3g2.jpg', 'https://i.imgur.com/0UVfIYL.jpg', 'https://i.imgur.com/VzlUWMC.jpg',
-    'https://i.imgur.com/cBj0Bfx.jpg', 'https://i.imgur.com/VaIoKYM.jpg', 'https://i.imgur.com/lbbIFKS.jpg', 'https://i.imgur.com/5Djp6H3.jpg', 'https://i.imgur.com/4kuf6pe.jpg', 'https://i.imgur.com/n9SS2nj.jpg',
-    'https://i.imgur.com/YCk5Qus.jpg', 'https://i.imgur.com/sHjTwkz.jpg', 'https://i.imgur.com/X1QXx6I.jpg', 'https://i.imgur.com/1dwRxPX.jpg', 'https://i.imgur.com/2UcI2sG.jpg', 'https://i.imgur.com/kt84g6H.jpg',
-    'https://i.imgur.com/rJ2eO3W.jpg', 'https://i.imgur.com/k4IotO1.jpg', 'https://i.imgur.com/42flWYE.jpg', 'https://i.imgur.com/pDDNhjK.jpg', 'https://i.imgur.com/bqDopSu.jpg', 'https://i.imgur.com/DjfVaXW.jpg']
-    
-    meme_url = memes_library[num]
-    return meme_url
+
+def pick_up_memes():
+    info = {
+    "client_id": "69ad53f1c002de2",
+    "client_secret": "fa9684e5f5a260618f2864ef28595573d86656e9",
+    "access_token": "07f8edbe1a4e1980443bae9364c761f4129d7d10",
+    "expires_in": "315360000",
+    "token_type": "bearer",
+    "refresh_token": "fb2ea2c2ad2fda105571a4f4451c89c8cd7d660f",
+    "account_username": "jack204251",
+    "account_id": 112527951
+    }
+
+    meme_ids = []
+    for page in range(100):
+        imgur_client = Imgur(info)
+        clt = imgur_client.image_ids(page)
+        clt = clt['response']['data']
+        if len(clt) == 0:
+            break
+        for id_ in clt:
+            meme_ids.append(id_)
+
+    num_ids = len(meme_ids)
+    ran_ids = random.ranint(0,num_ids)
+    meme = meme_ids[ran_ids]
+    return meme
 
 
 def responese(msg):
@@ -48,13 +64,13 @@ def responese(msg):
     '意義': '有意義沒逸逸', '沒聲音': '人走茶涼啦', '會癢': '要驗喔', '會癢?': '要驗餒', '不好說': '不想說都不要說', '不好說啦': '不想說都不要說', '笑死': ['死了沒?', '不要真的笑死餒'], 
     '羊肉炒飯': ['真香', '身體很誠實'], '沒啥好吃': ['源坐?', '葛利麵吃爆?', '背包客?', '鴨肉李伺候?', '米干?', '下次吃茶六?', '碳佐再來?', '伊莉會館海鮮?'], '韓導': ['喔氣氣氣氣氣', '征服宇宙', '當個塞子', '可憐啊', '高雄發大財', '莫忘世上苦人多', '鳳凰都飛走了 進來一大堆雞'], 
     '韓國瑜': ['喔氣氣氣氣氣', '征服宇宙', '當個塞子', '可憐啊', '高雄發大財', '莫忘世上苦人多', '鳳凰都飛走了 進來一大堆雞'], '韓總': ['喔氣氣氣氣氣', '征服宇宙', '當個塞子', '可憐啊', '高雄發大財', '莫忘世上苦人多', '鳳凰都飛走了 進來一大堆雞'], 
-    '等等': ['麻吉得', '等殺小', '進棺材等?', '等投胎?'], '股票':[ '台積電沒在賣的啦', '這裡不談史塔克'], '買哪': [ '跌了你也不敢買', '麗臺 @江忠諭', '長榮 @江忠諭'], '狗狗': ['to the moon', '@林老闆'], '推薦': '問越南小哥?',
-    'will': ['大家好 我是will', '歡迎來到X調查'], '大戶': '誰找林老闆', '最敢': ['還是要帶套啦', '有我們ㄅ緯敢?', '有我們逸逸衝?'], '結婚': '弄出人命?', '要加': '手打+500', '刷卡': '刷卡加一成', '先刷': '先刷賺回饋', 
-    '硬': ['@ㄅ緯', '也不用動刀動槍啦', '廁所處理?', '-3000'], '虧': ['少去一次', '嗯?'], '窮': ['去跟你老闆談', '蔡英文不用負責?'], '蛇': ['消防隊姓楊的不抓蛇啦', '蔡英文~~', '馬英九哦'], '豆花': '我的豆花30塊',
+    '等等': ['麻吉得', '等殺小', '進棺材等?', '等投胎?'], '股票':[ '林北台積電沒在賣', '這裡不談史塔克', 'all money back me home'], '買哪': [ '跌了你也不敢買', '麗臺 @江忠諭', '長榮 @江忠諭'], '狗狗': ['to the moon', '@林老闆'], '推薦': '問越南小哥?',
+    'will': ['大家好 我是will', '歡迎來到X調查'], '大戶': '誰找林老闆', '最敢': ['還是要帶套啦', '有我們ㄅ緯敢?', '有我們逸逸衝?'], '結婚': '弄出人命?', '要加': '手打+500', '刷': '刷卡加一成', '先刷': '先刷賺回饋', 
+    '硬': ['@ㄅ緯', '也不用動刀動槍啦', '廁所處理?', '-3000'], '虧': ['少去一次', '嗯?', 'all money back me home'], '窮': ['去跟你老闆談', '蔡英文不用負責?', 'all money back me home'], '蛇': ['消防隊姓楊的不抓蛇啦', '蔡英文~~', '馬英九哦'], '豆花': '我的豆花30塊',
     'ㄅ偉': ['辣個男人', '手機要接喔', 'coffee snake'], 'ㄅ緯': ['辣個男人', '手機要接喔', 'coffee snake'], 'ㄅ委': ['辣個男人', '手機要接喔', 'coffee snake'], 'ㄅ尾': ['辣個男人', '手機要接喔', 'coffee snake'], 
     '加非': ['one coffee snake', '下午來一杯?', '再補一點'], '加飛': ['one coffee snake', '下午來一杯?', '再補一點'], '咖啡': ['one coffee snake', '下午來一杯?', '再補一點'], '家非': ['one coffee snake', '下午來一杯?', '再補一點'], '家飛': ['one coffee snake', '下午來一杯?', '再補一點'], 
 
-    # '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], 
+    '投資': ['all money back me home', '這裡不談史塔克', '林北台積電沒在賣'], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], 
     # '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], 
     # '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], 
     # '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], '': ['', '', ''], 
@@ -130,8 +146,6 @@ def handle_message(event):
     msg = event.message.text
     r = responese(msg)
 
-    random_meme = random.randint(0,41)
-
     if msg == '梗圖':
         r = '請輸入 "梗圖啦" 或 "梗圖 數字"'
         line_bot_api.reply_message(
@@ -140,30 +154,14 @@ def handle_message(event):
         return
 
     elif msg == '梗圖啦':
-        meme_url = pick_up_memes(random_meme)
+        # meme_url = pick_up_memes(random_meme)
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url=meme_url
+            preview_image_url='https://imgur.com/5Djp6H3'
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
         return
-
-    elif '梗圖' in msg:
-        try:
-            meme = int(msg.split()[1])
-            if isinstance(meme, int) == True and meme > 0:
-                meme -= 1
-                meme_url = pick_up_memes(meme)
-                image_message = ImageSendMessage(
-                    original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-                    preview_image_url=meme_url
-                )
-
-                line_bot_api.reply_message(event.reply_token, image_message)
-        
-        except ValueError:
-            return
 
     elif '在一句' in msg or '再一句' in msg:
         image_message = ImageSendMessage(
