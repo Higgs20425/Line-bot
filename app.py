@@ -121,6 +121,7 @@ def responese(msg):
         rsp = ''                                  
         return rsp
     
+
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
