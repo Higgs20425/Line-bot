@@ -40,10 +40,9 @@ def pick_up_memes():
         for id_ in clt:
             meme_ids.append(id_)
 
-    num_ids = len(meme_ids)
-    ran_ids = random.ranint(0,num_ids)
-    meme = meme_ids[ran_ids]
-    return meme
+    ran_ids = random.ranint(0, len(meme_ids))
+    meme_id = meme_ids[ran_ids]
+    return meme_id
 
 
 def responese(msg):
@@ -154,10 +153,10 @@ def handle_message(event):
         return
 
     elif msg == '梗圖啦':
-        # meme_url = pick_up_memes(random_meme)
+        meme_id = pick_up_memes()
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url='https://imgur.com/5Djp6H3'
+            preview_image_url='https://imgur.com/' + meme_id + '.jpg'
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)
@@ -166,7 +165,7 @@ def handle_message(event):
     elif '在一句' in msg or '再一句' in msg:
         image_message = ImageSendMessage(
             original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
-            preview_image_url='https://i.imgur.com/9p5wnmr.png'
+            preview_image_url='https://i.imgur.com/SNw6cKV.jpg'
         )
 
         line_bot_api.reply_message(event.reply_token, image_message)

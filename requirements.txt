@@ -2,3 +2,4 @@ line-bot-sdk
 gunicorn
 flask
 imgur_python
+webbrowser
