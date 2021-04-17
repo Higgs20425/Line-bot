@@ -63,12 +63,12 @@ def responese(msg):
             for key in included_keys.keys():
                 len_values = len(included_keys[key])
                 type_values = type(included_keys[key])
-                if msg in key and type_values == list:
+                if key in msg and type_values == list:
                     len_values -= 1
                     reply = random.randint(0,len_values)
                     rsp = included_keys[key][reply]
                     return rsp
-                elif msg in key and type_values == str:
+                elif key in msg and type_values == str:
                     rsp = included_keys[key]
                     return rsp
     except KeyError as e:
