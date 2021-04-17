@@ -130,10 +130,6 @@ def handle_message(event):
     msg = event.message.text
     r = responese(msg)
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
-
     random_meme = random.randint(0,41)
 
     if msg == '梗圖':
@@ -465,8 +461,9 @@ def handle_message(event):
         carousel_template_message)
         return
 
-    # elif '' in msg:
-    #     r = ''
+    line_bot_api.reply_message(
+    event.reply_token,
+    TextSendMessage(text=r))
 
 if __name__ == "__main__":
     app.run()
