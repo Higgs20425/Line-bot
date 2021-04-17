@@ -69,7 +69,7 @@ def responese(msg):
     # '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', 
     # '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '', '': '',     
 
-    '諭哥': ['諭哥沒在上班啦!', '還在台東啦...', '省500', '什麼時候北上', '小孩長的像你'], '小業': ['RAV4準備開出來了!', '準備做壞事? @13姨', '拒絕熊貓', '很奧豆?'], '逸逸': ['在釣魚啦!', '@小哈'], ###開始
+    '諭哥': ['諭哥沒在上班啦!', '還在台東啦...', '省500', '什麼時候北上', '小孩長的像你', '在台東啦'], '小業': ['RAV4準備開出來了!', '準備做壞事? @13姨', '拒絕熊貓', '很奧豆?'], '逸逸': ['在釣魚啦!', '@小哈'], ###開始
     '呆寶': '電腦砸了 遊戲刪了', '偉航': ['辣個賺十萬的男人', '再牽一台啦', '三鐵報好玩的啦', '五天五次'], '胖安': ['這很林老闆', '退休了啦', '幫買幾隻狗狗?', '他不會來啦'], 
     '開命': ['有400萬的藍人', '在接客', '很會含', '蝦皮主管啦'], '阿里': '阿里巴巴', '小馬雲': '阿里 阿里巴巴', '蒼哥': '蒼哥在默默操盤啦', '倉哥': '蒼哥在默默操盤啦', '買哪檔': [ '跌了你也不敢買', '麗臺 @江忠諭', '長榮 @江忠諭'], 
     '買哪支': [ '跌了你也不敢買', '麗臺 @江忠諭', '長榮 @江忠諭'], '吉哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '雞哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '機哥': ['吉丸吉丸', '大夜在補眠', '真香?'], '基哥': ['吉丸吉丸', '大夜在補眠', '真香?'],
@@ -129,6 +129,11 @@ def callback():
 def handle_message(event):
     msg = event.message.text
     r = responese(msg)
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=r))
+
     random_meme = random.randint(0,41)
 
     if msg == '梗圖':
@@ -163,6 +168,60 @@ def handle_message(event):
         
         except ValueError:
             return
+
+    elif '在一句' in msg or '再一句' in msg:
+        image_message = ImageSendMessage(
+            original_content_url='https://i.imgur.com/tN7r7Xb.jpg',
+            preview_image_url='https://i.imgur.com/9p5wnmr.png'
+        )
+
+        line_bot_api.reply_message(event.reply_token, image_message)
+        return    
+
+    if '在一句' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='789',
+            sticker_id='10885'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+    elif '再一句' in msg:
+        r = '在啦'
+        sticker_message = StickerSendMessage(
+            package_id='446',
+            sticker_id='2009'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+    elif '爬山' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='789',
+            sticker_id='10871'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
+
+    elif '凍未條' in msg or '憋不住啦' in msg or '憋不住' in msg:
+        sticker_message = StickerSendMessage(
+            package_id='446',
+            sticker_id='2026'
+        )
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        sticker_message)
+        return
 
     if msg == '酒吧 大安' in msg:
         carousel_template_message = TemplateSendMessage(
@@ -406,57 +465,8 @@ def handle_message(event):
         carousel_template_message)
         return
 
-    if '在一句' in msg:
-        sticker_message = StickerSendMessage(
-            package_id='789',
-            sticker_id='10885'
-        )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-        return
-
-    elif '再一句' in msg:
-        r = '在啦'
-        sticker_message = StickerSendMessage(
-            package_id='446',
-            sticker_id='2009'
-        )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-        return
-
-    elif '爬山' in msg:
-        sticker_message = StickerSendMessage(
-            package_id='789',
-            sticker_id='10871'
-        )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-        return
-
-    elif '凍未條' in msg or '憋不住啦' in msg or '憋不住' in msg:
-        sticker_message = StickerSendMessage(
-            package_id='446',
-            sticker_id='2026'
-        )
-
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-        return
-
     # elif '' in msg:
     #     r = ''
-
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=r))
 
 if __name__ == "__main__":
     app.run()
