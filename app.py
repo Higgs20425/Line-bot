@@ -79,9 +79,9 @@ def responese(msg):
     try:
         for key in included_keys.keys():
             if key in msg:
-            re = random.randint(0,len(included_keys[key])) - 1
-            rsp = included_keys[msg][re]
-            return rsp            
+                re = random.randint(0,len(included_keys[key])) - 1
+                rsp = included_keys[msg][re]
+                return rsp            
     except KeyError as e:
         rsp = ''                                  
         return rsp
