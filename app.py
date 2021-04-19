@@ -80,7 +80,7 @@ def responese(msg):
         for key in included_keys.keys():
             if key in msg:
                 re = random.randint(0,len(included_keys[key])) - 1
-                rsp = included_keys[msg][re]
+                rsp = included_keys[key][re]
                 return rsp            
     except KeyError as e:
         rsp = ''                                  
@@ -130,28 +130,28 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, image_message)
         return    
 
-    if '在一句' in msg:
-        sticker_message = StickerSendMessage(
-            package_id='789',
-            sticker_id='10885'
-        )
+    # if '在一句' in msg:
+    #     sticker_message = StickerSendMessage(
+    #         package_id='789',
+    #         sticker_id='10885'
+    #     )
 
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-        return
+    #     line_bot_api.reply_message(
+    #     event.reply_token,
+    #     sticker_message)
+    #     return
 
-    elif '再一句' in msg:
-        r = '在啦'
-        sticker_message = StickerSendMessage(
-            package_id='446',
-            sticker_id='2009'
-        )
+    # elif '再一句' in msg:
+    #     r = '在啦'
+    #     sticker_message = StickerSendMessage(
+    #         package_id='446',
+    #         sticker_id='2009'
+    #     )
 
-        line_bot_api.reply_message(
-        event.reply_token,
-        sticker_message)
-        return
+    #     line_bot_api.reply_message(
+    #     event.reply_token,
+    #     sticker_message)
+    #     return
 
     elif '爬山' in msg:
         sticker_message = StickerSendMessage(
