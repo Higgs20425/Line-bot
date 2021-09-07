@@ -14,8 +14,8 @@ from imgur_python import Imgur
 
 app = Flask(__name__)
 
-line_bot_api = LineBotApi('osxi9o3k8uGzb6i0qJKtvphiwpgghJu9rVXZoIhTzLnQskoil75p0Qv61qi84UgRN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjXi298uD2x30efq+PZggzpY/trmln94TpI9j5Wxw9/l0wdB04t89/1O/w1cDnyilFU=')
-handler = WebhookHandler('83dc7c0d301e53c5d5216759babb431e')
+line_bot_api = LineBotApi('kgbpKtdwPWMexRaCUBqIPFveRllZwfk7mROn1M1Z9mGDO37bbh/xtFq+UTCWMoeSN+OaLwYJl6N3ZYhv7Jimndn6n59XxRB1paI92wGcEjUfjPs2ZEy4z0VkPOYfr5aEWiecRrKfWv0kb7Jv9C6jbAdB04t89/1O/w1cDnyilFU=')
+handler = WebhookHandler('ddbe30c10b53bebb600cbff244416c51')
 
 
 def pick_up_memes():
